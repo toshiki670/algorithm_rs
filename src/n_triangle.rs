@@ -12,6 +12,8 @@ pub fn exec() {
 fn calc(n: u32) -> u64 {
   let mut sum: u64 = 0;
 
+  if n <= 0 {return 0};
+
   // small triangles
   sum += (n * (n + 1) / 2) as u64;
   dbg!(sum);
