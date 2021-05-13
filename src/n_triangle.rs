@@ -12,13 +12,15 @@ pub fn exec() {
 fn calc(n: u32) -> u64 {
   let mut sum: u64 = 0;
 
-  for i in 1..=n {
-    // small triangles
-    sum += i as u64;
+  // small triangles
+  sum += (n * (n + 1) / 2) as u64;
+  dbg!(sum);
 
-    // small invertted triangles
-    sum += i as u64 - 1;
+  // small invertted triangles
+  sum += ((n - 1) * n / 2) as u64;
+  dbg!(sum);
 
+  for i in 2..=n {
     // Triangles with height greater than or equal to 2
     for j in 1..=(i - 1) {
       sum += j as u64;
