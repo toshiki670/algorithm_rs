@@ -5,7 +5,7 @@ pub fn exec() {
     n : u32,
   }
 
-  println!("{}", calc(n));
+  println!("{} is {}.", n, calc(n));
 }
 
 
