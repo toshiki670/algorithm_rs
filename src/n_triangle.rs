@@ -31,7 +31,7 @@ fn calc(n: u32) -> u64 {
       }
     }
 
-    // dbg!(sum);
+    dbg!(sum);
   }
   sum
 }
