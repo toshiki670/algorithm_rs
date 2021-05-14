@@ -1,10 +1,10 @@
 use proconio::input;
 
 pub fn exec() {
+    println!("Enter a height:");
     input! {
         n : u32,
     }
-
     println!("{} is {}.", n, calc(n));
 }
 
