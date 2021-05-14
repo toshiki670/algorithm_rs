@@ -12,10 +12,10 @@ pub fn exec() {
 fn calc(n: u32) -> u64 {
     if n <= 0 {return 0};
 
-    let mut sum: u64 = 0;
+    let mut sum: u64;
 
     // small triangles
-    sum += (n * (n + 1) / 2) as u64;
+    sum = (n * (n + 1) / 2) as u64;
     dbg!(sum);
 
     // small invertted triangles
