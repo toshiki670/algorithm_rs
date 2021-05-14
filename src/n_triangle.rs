@@ -24,9 +24,7 @@ fn calc(n: u32) -> u64 {
 
     for i in 2..=n {
         // Triangles with height greater than or equal to 2
-        for j in 1..=(i - 1) {
-            sum += j as u64;
-        }
+        sum += ((i - 1) * i / 2) as u64;
 
         // Invertted triangles with height greater than or equal to 2
         if 4 <= i {
