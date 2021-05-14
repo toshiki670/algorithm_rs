@@ -12,24 +12,25 @@ pub fn exec() {
 fn calc(n: u32) -> u64 {
     if n <= 0 {return 0};
 
+    let n: u64 = n as u64;
     let mut sum: u64;
 
     // small triangles
-    sum = (n * (n + 1) / 2) as u64;
+    sum = n * (n + 1) / 2;
     dbg!(sum);
 
     // small invertted triangles
-    sum += ((n - 1) * n / 2) as u64;
+    sum += (n - 1) * n / 2;
     dbg!(sum);
 
     for i in 2..=n {
         // Triangles with height greater than or equal to 2
-        sum += ((i - 1) * i / 2) as u64;
+        sum += (i - 1) * i / 2;
 
         // Invertted triangles with height greater than or equal to 2
         if 4 <= i {
             for j in (4..=i).filter(|x| x % 2 == 0) {
-                sum += (i - j) as u64 + 1;
+                sum += i - j + 1;
             }
         }
 
