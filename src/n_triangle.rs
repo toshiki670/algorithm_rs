@@ -29,8 +29,8 @@ fn calc(n: u32) -> u64 {
         dbg!(sum);
     }
 
+    // Invertted triangles with height greater than or equal to 2
     for i in 4..=n {
-        // Invertted triangles with height greater than or equal to 2
         for j in (4..=i).filter(|x| x % 2 == 0) {
             sum += i - j + 1;
         }
