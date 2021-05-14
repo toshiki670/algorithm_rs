@@ -39,3 +39,21 @@ fn calc(n: u32) -> u64 {
   }
   sum
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn be_valid() {
+        assert_eq!(super::calc(0), 0);
+        assert_eq!(super::calc(1), 1);
+        assert_eq!(super::calc(2), 5);
+        assert_eq!(super::calc(3), 13);
+        assert_eq!(super::calc(4), 27);
+        assert_eq!(super::calc(5), 48);
+        assert_eq!(super::calc(6), 78);
+        assert_eq!(super::calc(7), 118);
+        assert_eq!(super::calc(8), 170);
+        assert_eq!(super::calc(9), 235);
+        assert_eq!(super::calc(10), 315);
+    }
+}
