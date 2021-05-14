@@ -23,17 +23,17 @@ fn calc(n: u32) -> u64 {
     sum += (n - 1) * n / 2;
     dbg!(sum);
 
-    for i in 2..=n {
-        // Triangles with height greater than or equal to 2
-        sum += (i - 1) * i / 2;
+    // Triangles with height greater than or equal to 2
+    if 2 <= n {
+        sum += ((n - 1) * n / 2) * ((n - 1) + 2) / 3;
+        dbg!(sum);
+    }
 
+    for i in 4..=n {
         // Invertted triangles with height greater than or equal to 2
-        if 4 <= i {
-            for j in (4..=i).filter(|x| x % 2 == 0) {
-                sum += i - j + 1;
-            }
+        for j in (4..=i).filter(|x| x % 2 == 0) {
+            sum += i - j + 1;
         }
-
         dbg!(sum);
     }
     sum
