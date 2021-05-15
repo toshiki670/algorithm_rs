@@ -83,7 +83,7 @@ fn sum_arith_progression(first: u64, diff: u64, length: u64) -> u64 {
 }
 
 
-/// 高さが2以上のトライアングル
+/// 高さが2以上の三角形
 ///
 /// 高さが2の時、高さが2の三角形が 1
 /// 高さが3の時、高さが2の三角形が 3, 高さが3の三角形が 1
@@ -131,7 +131,7 @@ fn sum_arith_progression(first: u64, diff: u64, length: u64) -> u64 {
 ///        = (2n^3 + 6n^2 + 4n) / 12
 ///        = (n^3 + 3n^2 + 2n) / 6
 ///
-/// 以上の計算結果から、 (n^3 + 3n^2 + 2n) / 6 で高さが2以上のトライアングルが求められる。
+/// 以上の計算結果から、 (n^3 + 3n^2 + 2n) / 6 で高さが2以上の三角形が求められる。
 fn triangles_with_height_greater_than_or_equal_to_2(n: u64) -> u64 {
     (n.pow(3) + 3 * n.pow(2) + 2 * n) / 6
 }
