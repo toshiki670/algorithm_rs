@@ -31,24 +31,25 @@ fn calc(height: u32) -> u64 {
     let mut sum: u64;
 
     // small triangles
-    sum = sum_arith_progression(1, height, height);
+    sum = sum_arith_progression(1, 1, height);
     dbg!(sum);
 
-    // small invertted triangles
-    sum += sum_arith_progression(1, height - 1, height - 1);
-    dbg!(sum);
-
-    // Triangles with height greater than or equal to 2
     if 2 <= height {
         let fixd = height + 1 - 2;
-        sum += sum_arith_progression(1, fixd, fixd) * (fixd + 2) / 3;
+
+        // small invertted triangles
+        sum += sum_arith_progression(1, 1, fixd);
+        dbg!(sum);
+
+        // Triangles with height greater than or equal to 2
+        sum += sum_arith_progression(1, 1, fixd) * (fixd + 2) / 3;
         dbg!(sum);
     }
 
     // Invertted triangles with height greater than or equal to 2
     for i in (4..=height).filter(|x| x % 2 == 0) {
         let fixd = height + 1 - i;
-        sum += sum_arith_progression(1, fixd, fixd);
+        sum += sum_arith_progression(1, 1, fixd);
         dbg!(sum);
     }
     sum
@@ -57,13 +58,13 @@ fn calc(height: u32) -> u64 {
 
 /// 等差数列の和の公式 (sum_arithmetic_progression)
 ///   初項から第 n 項までの等差数列の和を Sn とする。
-///   初項 a，末項 l，項数 n のとき
-///   Sn = n(a + l) / 2
+///   初項 a，公差 d，項数 n のとき
+///   Sn = n{2a+(n−1)d} / 2
 /// 初項 a: first
-/// 末項 l: last
+/// 公差 d: diff
 /// 項数 n: length
-fn sum_arith_progression(first: u64, last: u64, length: u64) -> u64 {
-    length * (first + last) / 2
+fn sum_arith_progression(first: u64, diff: u64, length: u64) -> u64 {
+    length * (2 * first + (length - 1) * diff) / 2
 }
 
 // 等差数列 を求める関数
