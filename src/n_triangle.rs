@@ -16,27 +16,39 @@ fn calc(height: u32) -> u64 {
     let mut sum: u64;
 
     // small triangles
-    sum = height * (height + 1) / 2;
+    sum = sum_arith_progression(1, height, height);
     dbg!(sum);
 
     // small invertted triangles
-    sum += (height - 1) * height / 2;
+    sum += sum_arith_progression(1, height - 1, height - 1);
     dbg!(sum);
 
     // Triangles with height greater than or equal to 2
     if 2 <= height {
-        let fixd_nheight = height + 1 - 2;
-        sum += (fixd_nheight * (fixd_nheight + 1) / 2) * (fixd_nheight + 2) / 3;
+        let fixd = height + 1 - 2;
+        sum += sum_arith_progression(1, fixd, fixd) * (fixd + 2) / 3;
         dbg!(sum);
     }
 
     // Invertted triangles with height greater than or equal to 2
     for i in (4..=height).filter(|x| x % 2 == 0) {
-        let fixd_nheight = height + 1 - i;
-        sum += fixd_nheight * (fixd_nheight + 1) / 2;
+        let fixd = height + 1 - i;
+        sum += sum_arith_progression(1, fixd, fixd);
         dbg!(sum);
     }
     sum
+}
+
+
+/// 等差数列の和の公式 (sum_arithmetic_progression)
+///   初項から第 n 項までの等差数列の和を Sn とする。
+///   初項 a，末項 l，項数 n のとき
+///   Sn = n(a + l) / 2
+/// 初項 a: first
+/// 末項 l: last
+/// 項数 n: length
+fn sum_arith_progression(first: u64, last: u64, length: u64) -> u64 {
+    length * (first + last) / 2
 }
 
 #[cfg(test)]
