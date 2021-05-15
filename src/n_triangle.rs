@@ -67,12 +67,6 @@ fn sum_arith_progression(first: u64, diff: u64, length: u64) -> u64 {
     length * (2 * first + (length - 1) * diff) / 2
 }
 
-// 等差数列 を求める関数
-// 初項 a，公差 d の等差数列 an の一般項は
-// an = a + (n − 1)d
-// fn arith_progression(first: u64, diff: u64, n: u64) -> u64 {
-//     first + (n - 1) * diff
-// }
 
 #[cfg(test)]
 mod tests {
