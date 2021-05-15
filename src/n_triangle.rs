@@ -3,35 +3,37 @@ use proconio::input;
 pub fn exec() {
     println!("Enter a height:");
     input! {
-        n : u32,
+        height : u32,
     }
-    println!("{} is {}.", n, calc(n));
+    println!("{} is {}.", height, calc(height));
 }
 
 
-fn calc(n: u32) -> u64 {
-    if n <= 0 {return 0};
+fn calc(height: u32) -> u64 {
+    if height <= 0 {return 0};
 
-    let n: u64 = n as u64;
+    let height: u64 = height as u64;
     let mut sum: u64;
 
     // small triangles
-    sum = n * (n + 1) / 2;
+    sum = height * (height + 1) / 2;
     dbg!(sum);
 
     // small invertted triangles
-    sum += (n - 1) * n / 2;
+    sum += (height - 1) * height / 2;
     dbg!(sum);
 
     // Triangles with height greater than or equal to 2
-    if 2 <= n {
-        sum += ((n - 1) * n / 2) * ((n - 1) + 2) / 3;
+    if 2 <= height {
+        let fixd_nheight = height + 1 - 2;
+        sum += (fixd_nheight * (fixd_nheight + 1) / 2) * (fixd_nheight + 2) / 3;
         dbg!(sum);
     }
 
     // Invertted triangles with height greater than or equal to 2
-    for i in (4..=n).filter(|x| x % 2 == 0) {
-        sum += (n - i + 1) * ((n - i + 1) + 1) / 2;
+    for i in (4..=height).filter(|x| x % 2 == 0) {
+        let fixd_nheight = height + 1 - i;
+        sum += fixd_nheight * (fixd_nheight + 1) / 2;
         dbg!(sum);
     }
     sum
