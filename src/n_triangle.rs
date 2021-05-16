@@ -59,17 +59,17 @@ fn calc(height: u32) -> u64 {
         // Triangles with height greater than or equal to 2
         sum += triangles_with_height_greater_than_or_equal_to_2(fixd);
         dbg!(sum);
-    }
 
-    // Invertted triangles with height greater than or equal to 2
-    if 4 <= height {
-        let fixd = height + 1 - 4;
-        let odd = (fixd + fixd % 2) / 2; // Odd numbers
-        let even = (fixd - fixd % 2) / 2; // Even numbers
+        // Invertted triangles with height greater than or equal to 2
+        if 4 <= height {
+            let fixd = height + 1 - 4;
+            let odd = (fixd + fixd % 2) / 2; // Odd numbers
+            let even = (fixd - fixd % 2) / 2; // Even numbers
 
-        sum += inverted_triangles_when_odd_numbers(odd);
-        sum += inverted_triangles_when_even_numbers(even);
-        dbg!(sum);
+            sum += inverted_triangles_when_odd_numbers(odd);
+            sum += inverted_triangles_when_even_numbers(even);
+            dbg!(sum);
+        }
     }
     sum
 }
