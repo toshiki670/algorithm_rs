@@ -247,5 +247,7 @@ mod tests {
         assert_eq!(super::calc(8), 170);
         assert_eq!(super::calc(9), 235);
         assert_eq!(super::calc(10), 315);
+        assert_eq!(super::calc(11), 411);
+        assert_eq!(super::calc(12), 525);
     }
 }
