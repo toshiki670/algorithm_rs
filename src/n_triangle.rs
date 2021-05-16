@@ -39,11 +39,11 @@ pub fn exec() {
 }
 
 
-fn calc(height: u32) -> u64 {
+fn calc(height: u32) -> u128 {
     if height <= 0 {return 0};
 
-    let height: u64 = height as u64;
-    let mut sum: u64;
+    let height: u128 = height as u128;
+    let mut sum: u128;
 
     // small triangles
     sum = sum_arith_progression(1, 1, height);
@@ -82,7 +82,7 @@ fn calc(height: u32) -> u64 {
 /// 初項 a: first
 /// 公差 d: diff
 /// 項数 n: length
-fn sum_arith_progression(first: u64, diff: u64, length: u64) -> u64 {
+fn sum_arith_progression(first: u128, diff: u128, length: u128) -> u128 {
     length * (2 * first + (length - 1) * diff) / 2
 }
 
@@ -135,7 +135,7 @@ fn sum_arith_progression(first: u64, diff: u64, length: u64) -> u64 {
 ///        = (n^3 + 3n^2 + 2n) / 6
 ///
 /// 以上の計算結果から、 (n^3 + 3n^2 + 2n) / 6 で高さが2以上の三角形が求められる。
-fn triangles_with_height_greater_than_or_equal_to_2(n: u64) -> u64 {
+fn triangles_with_height_greater_than_or_equal_to_2(n: u128) -> u128 {
     (n.pow(3) + 3 * n.pow(2) + 2 * n) / 6
 }
 
@@ -181,7 +181,7 @@ fn triangles_with_height_greater_than_or_equal_to_2(n: u64) -> u64 {
 ///        = (2n^3 + 3n^2 + n) / 6
 ///
 /// 以上の計算結果から、奇数の場合、 (2n^3 + 3n^2 + n) / 6 で高さが2以上の逆三角形の合計が求められる。
-fn inverted_triangles_when_odd_numbers(n: u64) -> u64 {
+fn inverted_triangles_when_odd_numbers(n: u128) -> u128 {
     (2 * n.pow(3) + 3 * n.pow(2) + n) / 6
 }
 
@@ -227,7 +227,7 @@ fn inverted_triangles_when_odd_numbers(n: u64) -> u64 {
 ///        = (2n^3 + 6n^2 + 4n) / 6
 ///
 /// 以上の計算結果から、偶数の場合、 (2n^3 + 6n^2 + 4n) / 6 で高さが2以上の逆三角形の合計が求められる。
-fn inverted_triangles_when_even_numbers(n: u64) -> u64 {
+fn inverted_triangles_when_even_numbers(n: u128) -> u128 {
     (2 * n.pow(3) + 6 * n.pow(2) + 4 * n) / 6
 }
 
