@@ -248,4 +248,8 @@ mod tests {
         assert_eq!(super::calc(11), 411);
         assert_eq!(super::calc(12), 525);
     }
+    #[test]
+    fn when_max_value() {
+        assert_eq!(super::calc(4294967295), 19807040626260241388098551808);
+    }
 }
