@@ -42,15 +42,16 @@ pub fn exec() {
 fn calc(height: u32) -> u128 {
     if height <= 0 {return 0};
 
-    let height: u128 = height as u128;
-    let mut sum: u128;
+    let height = height as u128;
+    let mut sum;
 
     // small triangles
     sum = sum_arith_progression(1, 1, height);
     dbg!(sum);
 
-    if 2 <= height {
-        let fixd = height + 1 - 2;
+    let calculations_after_height_2 = 2;
+    if calculations_after_height_2 <= height {
+        let fixd = height + 1 - calculations_after_height_2;
 
         // small invertted triangles
         sum += sum_arith_progression(1, 1, fixd);
@@ -61,8 +62,9 @@ fn calc(height: u32) -> u128 {
         dbg!(sum);
 
         // Invertted triangles with height greater than or equal to 2
-        if 4 <= height {
-            let fixd = height + 1 - 4;
+        let calculations_after_height_4 = 4;
+        if calculations_after_height_4 <= height {
+            let fixd = height + 1 - calculations_after_height_4;
             let odd = (fixd + fixd % 2) / 2; // Odd numbers
             let even = (fixd - fixd % 2) / 2; // Even numbers
 
