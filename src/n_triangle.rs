@@ -42,8 +42,8 @@ pub fn exec() {
 fn calc(height: u32) -> u128 {
     if height <= 0 {return 0};
 
-    let height: u128 = height as u128;
-    let mut sum: u128;
+    let height = height as u128;
+    let mut sum;
 
     // small triangles
     sum = sum_arith_progression(1, 1, height);
