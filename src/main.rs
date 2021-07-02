@@ -1,6 +1,5 @@
 use clap::{App, SubCommand};
 
-use proconio::input;
 mod n_triangle;
 
 fn main() {
