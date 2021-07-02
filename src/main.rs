@@ -1,20 +1,28 @@
-use proconio::input;
+use std::env;
+
+use clap::{App, SubCommand};
+use env_logger;
+use log::{error, Level};
+
 mod n_triangle;
 
 fn main() {
-    println!("Select algorithms:");
-    println!("0: n_triangle");
+    let cli = clap::load_yaml!("cli.yml");
+    let n_triangle_cli = clap::load_yaml!("n_triangle/cli.yml");
 
-    println!("\nEnter number from 0 to 0:");
-    input! {
-        selected_num: u8,
+    let matches = App::from_yaml(cli)
+        .subcommand(SubCommand::from_yaml(n_triangle_cli))
+        .get_matches();
+
+    if matches.is_present("verbose") {
+        env::set_var("RUST_LOG", Level::Trace.to_string());
     }
+    env_logger::init();
 
-    println!();
-
-    match selected_num {
-        0 => n_triangle::exec(),
-        1_u8..=u8::MAX => println!("Do nothing..."),
+    if let Some(m) = matches.subcommand_matches("n_triangle") {
+        n_triangle::exec(m);
+    } else {
+        error!("Do nothing...");
     }
 
     println!("\nGood bye!");
