@@ -28,13 +28,17 @@
 //!   - 階差数列の和の公式に 階差数列の一般項 を代入
 
 use clap::ArgMatches;
+use log::{debug, error};
 
 pub fn exec(matches: &ArgMatches) {
     let height = matches.value_of("height").unwrap();
 
     match matches.value_of("height").unwrap().parse() {
-        Ok(h) => println!("{} is {}.", h, calc(h)),
-        Err(_) => eprintln!("Please specfy integer value: {}", &height),
+        Ok(h) => println!("The answer with a height of {} is {}.", h, calc(h)),
+        Err(e) => {
+            error!("ParseIntError: {}.", e);
+            error!("Please specfy integer value: {}.", &height);
+        },
     }
 }
 
@@ -47,19 +51,21 @@ fn calc(height: u32) -> u128 {
 
     // small triangles
     sum = sum_arith_progression(1, 1, height);
-    dbg!(sum);
+    debug!("Small triangles: {}", &sum);
 
     let calculations_after_height_2 = 2;
     if calculations_after_height_2 <= height {
         let fixd = height + 1 - calculations_after_height_2;
 
         // small invertted triangles
-        sum += sum_arith_progression(1, 1, fixd);
-        dbg!(sum);
+        let s = sum_arith_progression(1, 1, fixd);
+        sum += s;
+        debug!("Small invertted triangles: {} (Total: {})", &s, &sum);
 
         // Triangles with height greater than or equal to 2
-        sum += triangles_with_height_greater_than_or_equal_to_2(fixd);
-        dbg!(sum);
+        let s = triangles_with_height_greater_than_or_equal_to_2(fixd);
+        sum += s;
+        debug!("Big triangles: {} (Total: {})", &s, &sum);
 
         // Invertted triangles with height greater than or equal to 2
         let calculations_after_height_4 = 4;
@@ -68,9 +74,13 @@ fn calc(height: u32) -> u128 {
             let odd = (fixd + fixd % 2) / 2; // Odd numbers
             let even = (fixd - fixd % 2) / 2; // Even numbers
 
-            sum += inverted_triangles_when_odd_numbers(odd);
-            sum += inverted_triangles_when_even_numbers(even);
-            dbg!(sum);
+            let s = inverted_triangles_when_odd_numbers(odd);
+            sum += s;
+            debug!("Big inverted triangles when odd: {} (Total: {})", &s, &sum);
+
+            let s = inverted_triangles_when_even_numbers(even);
+            sum += s;
+            debug!("Big inverted triangles when even: {} (Total: {})", &s, &sum);
         }
     }
     sum
