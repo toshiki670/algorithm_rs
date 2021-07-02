@@ -1,6 +1,6 @@
 [package]
 name = "algorithm_rs"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Toshiki <toshiki.dev@protonmail.ch>"]
 edition = "2018"
 license = "MIT"
