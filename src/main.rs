@@ -1,4 +1,4 @@
-use clap::{self, SubCommand};
+use clap::{App, SubCommand};
 
 use proconio::input;
 mod n_triangle;
@@ -7,7 +7,7 @@ fn main() {
     let cli = clap::load_yaml!("cli.yml");
     let n_triangle_cli = clap::load_yaml!("n_triangle/cli.yml");
 
-    let matches = clap::App::from_yaml(cli)
+    let matches = App::from_yaml(cli)
         .subcommand(SubCommand::from_yaml(n_triangle_cli))
         .get_matches();
 
