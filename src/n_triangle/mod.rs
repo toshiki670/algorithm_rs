@@ -27,15 +27,15 @@
 //! * 階差数列の和の求め方
 //!   - 階差数列の和の公式に 階差数列の一般項 を代入
 
+use clap::ArgMatches;
 
-use proconio::input;
+pub fn exec(matches: &ArgMatches) {
+    let height = matches.value_of("height").unwrap();
 
-pub fn exec() {
-    println!("Enter a height:");
-    input! {
-        height : u32,
+    match matches.value_of("height").unwrap().parse() {
+        Ok(h) => println!("{} is {}.", h, calc(h)),
+        Err(_) => eprintln!("Please specfy integer value: {}", &height),
     }
-    println!("{} is {}.", height, calc(height));
 }
 
 

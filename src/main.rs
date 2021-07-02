@@ -12,19 +12,10 @@ fn main() {
         .get_matches();
 
 
-    println!("Select algorithms:");
-    println!("0: n_triangle");
-
-    println!("\nEnter number from 0 to 0:");
-    input! {
-        selected_num: u8,
-    }
-
-    println!();
-
-    match selected_num {
-        0 => n_triangle::exec(),
-        1_u8..=u8::MAX => println!("Do nothing..."),
+    if let Some(m) = matches.subcommand_matches("n_triangle") {
+        n_triangle::exec(m);
+    } else {
+        println!("Do nothing...");
     }
 
     println!("\nGood bye!");
