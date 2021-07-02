@@ -1,0 +1,12 @@
+name: n_triangle
+version: 0.1.2
+author: Toshiki <toshiki.dev@protonmail.ch>
+about: n_triangle calcurater
+args:
+    - height:
+        short: h
+        long: height
+        value_name: VALUE
+        help: Input the triangle height
+        required: true
+        takes_value: true
