@@ -3,9 +3,10 @@ version: 0.1.2
 author: Toshiki <toshiki.dev@protonmail.ch>
 about: n_triangle calcurater
 args:
-  - number:
-      short: n
-      value_name: height
-      help: Input the triangle height
-      required: true
-      takes_value: true
+    - height:
+        short: h
+        long: height
+        value_name: VALUE
+        help: Input the triangle height
+        required: true
+        takes_value: true
