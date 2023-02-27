@@ -3,3 +3,10 @@
 <a href="https://github.com/toshiki670/algorithm_rs/releases"><img alt="GitHub Releases" src="https://img.shields.io/github/v/tag/toshiki670/algorithm_rs?label=release&style=flat-square"></a>
 
 # algorithm_rs
+## Update dependencies
+1. Edit cargo.toml
+1. `$ cargo update`
+
+
+## Install local
+`$ cargo install --path .`
