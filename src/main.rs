@@ -29,10 +29,11 @@ fn main() {
     }
     env_logger::init();
 
-    if let Some(m) = matches.subcommand_matches("n_triangle") {
-        n_triangle::exec(m);
-    } else {
-        error!("Do nothing...");
+    match matches.subcommand() {
+        Some(("n_triangle", sub_matches)) => {
+            n_triangle::exec(sub_matches);
+        }
+        _ => unreachable!()
     }
 
     println!("\nGood bye!");
