@@ -1,28 +1,39 @@
 use std::env;
 
-use clap::{App, SubCommand};
+use clap::{Arg, Command, ArgAction};
 use env_logger;
 use log::{error, Level};
 
 mod n_triangle;
 
+fn cli() -> Command {
+    Command::new("Algorithm")
+        .version("1.0.1")
+        .author("Toshiki <bushy.trivial.0o@icloud.com>")
+        .about("Algorithm tool")
+        .arg(
+            Arg::new("verbose")
+                .short('v')
+                .long("verbose")
+                .help("explain what is being done")
+                .action(ArgAction::SetTrue)
+        )
+        .subcommand(n_triangle::cli())
+}
+
 fn main() {
-    let cli = clap::load_yaml!("cli.yml");
-    let n_triangle_cli = clap::load_yaml!("n_triangle/cli.yml");
+    let matches = cli().get_matches();
 
-    let matches = App::from_yaml(cli)
-        .subcommand(SubCommand::from_yaml(n_triangle_cli))
-        .get_matches();
-
-    if matches.is_present("verbose") {
+    if matches.get_flag("verbose") {
         env::set_var("RUST_LOG", Level::Trace.to_string());
     }
     env_logger::init();
 
-    if let Some(m) = matches.subcommand_matches("n_triangle") {
-        n_triangle::exec(m);
-    } else {
-        error!("Do nothing...");
+    match matches.subcommand() {
+        Some(("n_triangle", sub_matches)) => {
+            n_triangle::exec(sub_matches);
+        }
+        _ => unreachable!()
     }
 
     println!("\nGood bye!");

@@ -27,13 +27,28 @@
 //! * 階差数列の和の求め方
 //!   - 階差数列の和の公式に 階差数列の一般項 を代入
 
-use clap::ArgMatches;
+use clap::{Arg, Command, ArgMatches};
 use log::{debug, error};
 
-pub fn exec(matches: &ArgMatches) {
-    let height = matches.value_of("height").unwrap();
+pub fn cli() -> Command {
+    Command::new("n_triangle")
+        .version("1.0.0")
+        .author("Toshiki <bushy.trivial.0o@icloud.com>")
+        .about("n_triangle calcurater")
+        .arg(
+            Arg::new("height")
+                .short('h')
+                .long("height")
+                .value_name("VALUE")
+                .help("explain what is being done")
+                .required(true)
+        )
+}
 
-    match matches.value_of("height").unwrap().parse() {
+pub fn exec(matches: &ArgMatches) {
+    let height = matches.get_one::<String>("height").expect("required");
+
+    match height.parse() {
         Ok(h) => println!("The answer with a height of {} is {}.", h, calc(h)),
         Err(e) => {
             error!("ParseIntError: {}.", e);
