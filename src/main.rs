@@ -8,7 +8,7 @@ mod n_triangle;
 
 fn cli() -> Command {
     Command::new("Algorithm")
-        .version("1.0.1")
+        .version("1.1.0")
         .author("Toshiki <bushy.trivial.0o@icloud.com>")
         .about("Algorithm tool")
         .arg(
