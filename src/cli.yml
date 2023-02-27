@@ -1,9 +1,0 @@
-name: Algorithm
-version: 1.0.1
-author: Toshiki <toshiki.dev@protonmail.ch>
-about: Algorithm tool
-args:
-    - verbose:
-        short: v
-        long: verbose
-        help: explain what is being done
