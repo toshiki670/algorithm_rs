@@ -2,7 +2,7 @@ use std::env;
 
 use clap::{Arg, Command, ArgAction};
 use env_logger;
-use log::{error, Level};
+use log::Level;
 
 mod n_triangle;
 

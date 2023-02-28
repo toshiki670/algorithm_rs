@@ -32,14 +32,12 @@ use log::{debug, error};
 
 pub fn cli() -> Command {
     Command::new("n_triangle")
-        .version("1.1.0")
+        .version("1.2.0")
         .author("Toshiki <bushy.trivial.0o@icloud.com>")
         .about("n_triangle calcurater")
         .arg(
             Arg::new("height")
-                .short('h')
-                .long("height")
-                .value_name("VALUE")
+                .value_name("HEIGHT")
                 .help("explain what is being done")
                 .required(true)
         )
