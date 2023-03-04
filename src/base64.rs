@@ -1,6 +1,7 @@
 use clap::{Command, ArgMatches};
 
 mod encode;
+// mod table;
 
 pub fn cli() -> Command {
     Command::new("base64")

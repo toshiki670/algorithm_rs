@@ -1,5 +1,7 @@
 use clap::{Arg, Command, ArgMatches};
 
+// use crate::base64::table;
+
 pub fn cli() -> Command {
     Command::new("enc")
         .about("Encoder")
