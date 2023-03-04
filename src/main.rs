@@ -4,6 +4,7 @@ use clap::{Arg, Command, ArgAction};
 use env_logger;
 use log::Level;
 
+mod base64;
 mod n_triangle;
 
 fn cli() -> Command {
@@ -18,6 +19,7 @@ fn cli() -> Command {
                 .help("explain what is being done")
                 .action(ArgAction::SetTrue)
         )
+        .subcommand(base64::cli())
         .subcommand(n_triangle::cli())
 }
 
@@ -30,6 +32,9 @@ fn main() {
     env_logger::init();
 
     match matches.subcommand() {
+        Some(("base64", sub_matches)) => {
+            base64::exec(sub_matches);
+        }
         Some(("n_triangle", sub_matches)) => {
             n_triangle::exec(sub_matches);
         }
