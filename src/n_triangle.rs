@@ -4,7 +4,7 @@ mod calc;
 
 #[derive(Args, Debug)]
 #[command(name = "n_triangle")]
-#[command(version = "1.2.0")]
+#[command(version = "1.3.0")]
 #[command(author)]
 #[command(about = "n_triangle calcurater", long_about = None)]
 pub struct NTriangle {
