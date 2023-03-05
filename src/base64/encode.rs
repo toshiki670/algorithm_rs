@@ -1,27 +1,16 @@
-use clap::{Arg, Command, ArgMatches};
+use clap::Args;
 
 // use crate::base64::table;
 
-pub fn cli() -> Command {
-    Command::new("enc")
-        .about("Encoder")
-        .arg(
-            Arg::new("string")
-                .value_name("TEXT")
-                .help("Encode text.")
-        )
-        .arg(
-            Arg::new("input")
-                .short('i')
-                .value_name("FILENAME")
-                .help("read input data from FILENAME.")
-
-        )
+#[derive(Args, Debug)]
+#[command(about = "Encoder", long_about = None)]
+pub struct Encode {
+    text: String,
 }
 
-pub fn exec(matches: &ArgMatches) {
-    let string = matches.get_one::<String>("string").expect("required");
-    println!("{:?}", string);
+pub fn exec(cli: &Encode) {
+    let text = &cli.text;
+    println!("{:?}", text);
 
     // https://news.mynavi.jp/techplus/article/rustalgorithm-5/
     // Base64の変換テーブルを1文字ずつに区切る --- (*3)
@@ -30,7 +19,7 @@ pub fn exec(matches: &ArgMatches) {
     // 変換結果を保持する文字列 --- (*4)
     let mut result = String::new();
     // 入力文字列をバイト列に変換 --- (*5)
-    let bin8 = string.as_bytes();
+    let bin8 = text.as_bytes();
     // 繰り返し24bitごと(3文字ずつ)に処理する --- (*6)
     let cnt = bin8.len() / 3;
     for i in 0..cnt {
