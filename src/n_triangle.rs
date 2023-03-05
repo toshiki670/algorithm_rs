@@ -1,29 +1,19 @@
-use clap::{Arg, Command, ArgMatches};
-use log::error;
+use clap::Args;
 
 mod calc;
 
-pub fn cli() -> Command {
-    Command::new("n_triangle")
-        .version("1.2.0")
-        .author("Toshiki <bushy.trivial.0o@icloud.com>")
-        .about("n_triangle calcurater")
-        .arg(
-            Arg::new("height")
-                .value_name("HEIGHT")
-                .help("explain what is being done")
-                .required(true)
-        )
+#[derive(Args, Debug)]
+#[command(name = "n_triangle")]
+#[command(version = "1.2.0")]
+#[command(author)]
+#[command(about = "n_triangle calcurater", long_about = None)]
+pub struct NTriangle {
+    pub height: u32,
 }
 
-pub fn exec(matches: &ArgMatches) {
-    let height = matches.get_one::<String>("height").expect("required");
 
-    match height.parse() {
-        Ok(h) => println!("The answer with a height of {} is {}.", h, calc::call(h)),
-        Err(e) => {
-            error!("ParseIntError: {}.", e);
-            error!("Please specfy integer value: {}.", &height);
-        },
-    }
+pub fn exec(cli: &NTriangle) {
+    let height = cli.height;
+
+    println!("The answer with a height of {} is {}.", height, calc::call(height));
 }
