@@ -10,3 +10,14 @@
 
 ## Install local
 `$ cargo install --path .`
+
+
+## Algorithms
+* Base64
+* N Triangle
+
+
+## Version rule
+* Major: When add algorithm
+* Minor: When minor update or change interface, improvement
+* Path: When fix something

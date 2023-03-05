@@ -27,38 +27,9 @@
 //! * 階差数列の和の求め方
 //!   - 階差数列の和の公式に 階差数列の一般項 を代入
 
-use clap::{Arg, Command, ArgMatches};
-use log::{debug, error};
+use log::debug;
 
-pub fn cli() -> Command {
-    Command::new("n_triangle")
-        .version("1.1.0")
-        .author("Toshiki <bushy.trivial.0o@icloud.com>")
-        .about("n_triangle calcurater")
-        .arg(
-            Arg::new("height")
-                .short('h')
-                .long("height")
-                .value_name("VALUE")
-                .help("explain what is being done")
-                .required(true)
-        )
-}
-
-pub fn exec(matches: &ArgMatches) {
-    let height = matches.get_one::<String>("height").expect("required");
-
-    match height.parse() {
-        Ok(h) => println!("The answer with a height of {} is {}.", h, calc(h)),
-        Err(e) => {
-            error!("ParseIntError: {}.", e);
-            error!("Please specfy integer value: {}.", &height);
-        },
-    }
-}
-
-
-fn calc(height: u32) -> u128 {
+pub fn call(height: u32) -> u128 {
     if height <= 0 {return 0};
 
     let height = height as u128;
@@ -261,22 +232,22 @@ fn inverted_triangles_when_even_numbers(n: u128) -> u128 {
 mod tests {
     #[test]
     fn be_valid() {
-        assert_eq!(super::calc(0), 0);
-        assert_eq!(super::calc(1), 1);
-        assert_eq!(super::calc(2), 5);
-        assert_eq!(super::calc(3), 13);
-        assert_eq!(super::calc(4), 27);
-        assert_eq!(super::calc(5), 48);
-        assert_eq!(super::calc(6), 78);
-        assert_eq!(super::calc(7), 118);
-        assert_eq!(super::calc(8), 170);
-        assert_eq!(super::calc(9), 235);
-        assert_eq!(super::calc(10), 315);
-        assert_eq!(super::calc(11), 411);
-        assert_eq!(super::calc(12), 525);
+        assert_eq!(super::call(0), 0);
+        assert_eq!(super::call(1), 1);
+        assert_eq!(super::call(2), 5);
+        assert_eq!(super::call(3), 13);
+        assert_eq!(super::call(4), 27);
+        assert_eq!(super::call(5), 48);
+        assert_eq!(super::call(6), 78);
+        assert_eq!(super::call(7), 118);
+        assert_eq!(super::call(8), 170);
+        assert_eq!(super::call(9), 235);
+        assert_eq!(super::call(10), 315);
+        assert_eq!(super::call(11), 411);
+        assert_eq!(super::call(12), 525);
     }
     #[test]
     fn when_max_value() {
-        assert_eq!(super::calc(4294967295), 19807040626260241388098551808);
+        assert_eq!(super::call(4294967295), 19807040626260241388098551808);
     }
 }
