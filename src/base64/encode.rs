@@ -30,31 +30,30 @@ pub fn exec(text: &String) {
     let cnt = bin8.len() / 3;
     for i in 0..cnt {
         let n = i * 3; // 3文字(24bit)ずつ処理 --- (*7)
-        let b24 = ((bin8[n+0] as usize) << 16) +
-                  ((bin8[n+1] as usize) <<  8) +
-                  ((bin8[n+2] as usize) <<  0);
+        let b24 = ((bin8[n + 0] as usize) << 16)
+            + ((bin8[n + 1] as usize) << 8)
+            + ((bin8[n + 2] as usize) << 0);
         result.push(table[(b24 >> 18) & 0x3f]); // 6bitずつ変換 --- (*8)
         result.push(table[(b24 >> 12) & 0x3f]);
-        result.push(table[(b24 >>  6) & 0x3f]);
-        result.push(table[(b24 >>  0) & 0x3f]);
+        result.push(table[(b24 >> 6) & 0x3f]);
+        result.push(table[(b24 >> 0) & 0x3f]);
     }
     // 3バイトずつに割り切れなかった余りの部分を処理 --- (*9)
     match bin8.len() % 3 {
         1 => {
-            let b24 = (bin8[cnt*3] as usize) << 16;
+            let b24 = (bin8[cnt * 3] as usize) << 16;
             result.push(table[(b24 >> 18) & 0x3f]);
             result.push(table[(b24 >> 12) & 0x3f]);
             result.push_str("==");
-        },
+        }
         2 => {
-            let b24 = ((bin8[cnt*3+0] as usize) << 16) +
-                      ((bin8[cnt*3+1] as usize) << 8);
+            let b24 = ((bin8[cnt * 3 + 0] as usize) << 16) + ((bin8[cnt * 3 + 1] as usize) << 8);
             result.push(table[(b24 >> 18) & 0x3f]);
             result.push(table[(b24 >> 12) & 0x3f]);
-            result.push(table[(b24 >>  6) & 0x3f]);
+            result.push(table[(b24 >> 6) & 0x3f]);
             result.push('=');
-        },
-        _ => {},
+        }
+        _ => {}
     }
     println!("{:?}", result);
 }
