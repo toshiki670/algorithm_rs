@@ -1,8 +1,8 @@
+pub mod encode;
+
+use crate::cli::CliRoute;
 use clap::{Args, Subcommand};
-
-mod encode;
-// mod table;
-
+use enum_dispatch::enum_dispatch;
 
 #[derive(Args, Debug)]
 #[command(version = "0.1.0")]
@@ -10,19 +10,17 @@ mod encode;
 #[command(about = "base64 algorithm", long_about = None)]
 pub struct Base64 {
     #[command(subcommand)]
-    command: Commands,
+    command: Base64Commands,
 }
 
 #[derive(Subcommand, Debug)]
-enum Commands {
+#[enum_dispatch(CliRoute)]
+pub enum Base64Commands {
     Encode(encode::Encode),
 }
 
-
-pub fn exec(cli: &Base64) {
-    match &cli.command {
-        Commands::Encode(cli) => {
-            encode::exec(cli);
-        },
+impl CliRoute for Base64 {
+    fn route(&self) {
+        self.command.route();
     }
 }

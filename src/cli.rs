@@ -1,11 +1,13 @@
-use std::env;
-
+use crate::base64::encode;
+use crate::base64::Base64Commands;
+use crate::{base64, n_triangle};
 use clap::{Parser, Subcommand};
+use enum_dispatch::enum_dispatch;
 use env_logger;
 use log::Level;
+use std::env;
 
-use crate::{base64, n_triangle};
-
+#[enum_dispatch]
 pub trait CliRoute {
     fn route(&self);
 }
@@ -21,6 +23,7 @@ pub struct Cli {
 }
 
 #[derive(Subcommand, Debug)]
+#[enum_dispatch(CliRoute)]
 enum Commands {
     Base64(base64::Base64),
     NTriangle(n_triangle::NTriangle),
@@ -33,13 +36,6 @@ impl CliRoute for Cli {
         }
         env_logger::init();
 
-        match &self.command {
-            Commands::Base64(cli) => {
-                base64::exec(cli);
-            }
-            Commands::NTriangle(cli) => {
-                n_triangle::exec(cli);
-            }
-        }
+        self.command.route();
     }
 }

@@ -1,6 +1,7 @@
-use clap::Args;
-
 mod calc;
+
+use crate::cli::CliRoute;
+use clap::Args;
 
 #[derive(Args, Debug)]
 #[command(name = "n_triangle")]
@@ -11,9 +12,13 @@ pub struct NTriangle {
     pub height: u32,
 }
 
-
-pub fn exec(cli: &NTriangle) {
-    let height = cli.height;
-
-    println!("The answer with a height of {} is {}.", height, calc::call(height));
+impl CliRoute for NTriangle {
+    fn route(&self) {
+        let height = self.height;
+        println!(
+            "The answer with a height of {} is {}.",
+            height,
+            calc::call(height)
+        );
+    }
 }

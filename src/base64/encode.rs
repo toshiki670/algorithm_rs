@@ -1,3 +1,4 @@
+use crate::cli::CliRoute;
 use clap::Args;
 
 // use crate::base64::table;
@@ -8,8 +9,13 @@ pub struct Encode {
     text: String,
 }
 
-pub fn exec(cli: &Encode) {
-    let text = &cli.text;
+impl CliRoute for Encode {
+    fn route(&self) {
+        exec(&self.text);
+    }
+}
+
+pub fn exec(text: &String) {
     println!("{:?}", text);
 
     // https://news.mynavi.jp/techplus/article/rustalgorithm-5/
