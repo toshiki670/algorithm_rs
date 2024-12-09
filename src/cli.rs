@@ -1,6 +1,7 @@
 use crate::{
     base64::{encode::EncodeArgs, Base64Args, Base64Subcommand},
     n_triangle::NTriangleArgs,
+    system::SystemArgs,
 };
 use clap::{Parser, Subcommand};
 use enum_dispatch::enum_dispatch;
@@ -28,6 +29,7 @@ pub struct CliArgs {
 enum RootSubcommand {
     Base64(Base64Args),
     NTriangle(NTriangleArgs),
+    System(SystemArgs),
 }
 
 impl Route for CliArgs {
