@@ -1,6 +1,7 @@
-use crate::base64::encode;
-use crate::base64::Base64Commands;
-use crate::{base64, n_triangle};
+use crate::{
+    base64::{encode::EncodeArgs, Base64Args, Base64Subcommand},
+    n_triangle::NTriangleArgs,
+};
 use clap::{Parser, Subcommand};
 use enum_dispatch::enum_dispatch;
 use env_logger;
@@ -8,28 +9,28 @@ use log::Level;
 use std::env;
 
 #[enum_dispatch]
-pub trait CliRoute {
+pub trait Route {
     fn route(&self);
 }
 
 #[derive(Parser, Debug)]
 #[command(author, version, about = "Algorithm tool", long_about = None)]
-pub struct Args {
+pub struct CliArgs {
     #[arg(short, long, help = "Show logs")]
     pub verbose: bool,
 
     #[command(subcommand)]
-    command: Commands,
+    command: RootSubcommand,
 }
 
 #[derive(Subcommand, Debug)]
-#[enum_dispatch(CliRoute)]
-enum Commands {
-    Base64(base64::Base64),
-    NTriangle(n_triangle::NTriangle),
+#[enum_dispatch(Route)]
+enum RootSubcommand {
+    Base64(Base64Args),
+    NTriangle(NTriangleArgs),
 }
 
-impl CliRoute for Cli {
+impl Route for CliArgs {
     fn route(&self) {
         if self.verbose {
             env::set_var("RUST_LOG", Level::Trace.to_string());

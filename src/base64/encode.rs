@@ -1,15 +1,15 @@
-use crate::cli::CliRoute;
+use crate::cli::Route;
 use clap::Args;
 
 // use crate::base64::table;
 
 #[derive(Args, Debug)]
 #[command(about = "Encoder", long_about = None)]
-pub struct Encode {
+pub struct EncodeArgs {
     text: String,
 }
 
-impl CliRoute for Encode {
+impl Route for EncodeArgs {
     fn route(&self) {
         exec(&self.text);
     }
