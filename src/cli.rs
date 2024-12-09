@@ -21,12 +21,12 @@ pub struct CliArgs {
     pub verbose: bool,
 
     #[command(subcommand)]
-    command: RootSubcommand,
+    command: CliSubcommand,
 }
 
 #[derive(Subcommand, Debug)]
 #[enum_dispatch(Route)]
-enum RootSubcommand {
+enum CliSubcommand {
     Base64(Base64Args),
     NTriangle(NTriangleArgs),
     System(SystemArgs),
