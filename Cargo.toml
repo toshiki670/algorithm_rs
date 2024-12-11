@@ -1,6 +1,6 @@
 [package]
 name = "algorithm_rs"
-version = "2.0.1"
+version = "2.0.2"
 authors = ["Toshiki <bushy.trivial.0o@icloud.com>"]
 edition = "2021"
 license = "MIT"
@@ -12,4 +12,4 @@ clap = {version = "4.5.23", features = ["derive"]}
 clap_complete = "4.5.38"
 env_logger = "0.11.5"
 log = "0.4.22"
-enum_dispatch = "0.3.13"
+enum_delegate = "0.2.0"

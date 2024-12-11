@@ -1,18 +1,17 @@
 mod calc;
 
 use crate::cli::Route;
-use clap::Args;
 
-#[derive(Args, Debug)]
+#[derive(clap::Args, Debug)]
 #[command(name = "n_triangle")]
 #[command(version = "1.3.0")]
 #[command(author)]
 #[command(about = "n_triangle calcurater", long_about = None)]
-pub struct NTriangleArgs {
+pub struct Args {
     pub height: u32,
 }
 
-impl Route for NTriangleArgs {
+impl Route for Args {
     fn route(&self) {
         let height = self.height;
         println!(
