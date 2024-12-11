@@ -4,8 +4,8 @@ mod n_triangle;
 mod system;
 
 use clap::Parser;
-use cli::{CliArgs, Route};
+use cli::{Args, Route};
 
 fn main() {
-    CliArgs::parse().route();
+    Args::parse().route();
 }
