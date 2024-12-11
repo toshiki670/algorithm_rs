@@ -1,6 +1,6 @@
 [package]
 name = "algorithm_rs"
-version = "2.0.2"
+version = "2.1.1"
 authors = ["Toshiki <bushy.trivial.0o@icloud.com>"]
 edition = "2021"
 license = "MIT"
